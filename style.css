@@ -3,9 +3,35 @@ body {
         rgb(59,88,93),
         rgb(29,40,42)
         );
-    height: 100vh; /*vertical hight*/
+    height: 100vh; /*vertical hight - esta controlando o background*/
     color: white;
     font-family: sans-serif;
     display: flex;
     flex-direction: column;
+}
+
+#below-cover {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between; /* alinha horizontalmente */
+    align-items: center; /* alinha verticalmente */
+}
+
+#button-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;  /* alinha os itens na direção que não é a principal*/
+}
+
+.button {
+    font-size: 1.5em; /*em = medida relativa ao tamanho da fonte do elemento pai */
+}
+
+.button-navegate {
+    font-size: 2em;
+}
+
+.button-bigest {
+    font-size: 3em;
 }
