@@ -10,18 +10,20 @@
 </head>
 <body>
     <div id="music-container">
-        <h4>Music Player Emulator</H4>
+        <h4 id="playlist-title">Music Player Emulator</H4>
         <img id="cover" src="imagens/Capa_da_musica.jpg" alt="capa da musica">
         
         <div id="below-cover">
             <div id="song-info">
-                <div>Nome da música</div>
-                <div>Nome da banda</div>
+                <div id="song-name">Nome da música</div>
+                <div id="band-name" class="light-color">Nome da banda</div>
             </div>
-            <div id="like" class="button"><i class="bi bi-heart"></i></div>
+            <div id="like" class="button light-color"><i class="bi bi-heart"></i></div>
         </div>
         
-        <div>Barra de progresso</div>
+        <div id="progress-bar">
+            <div id="current-progress"></div>
+        </div>
         
         <div id="button-container">
             <div id="shuffle" class="button"><i class="bi bi-shuffle"></i></div>
