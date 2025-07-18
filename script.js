@@ -10,6 +10,9 @@ const previous = document.getElementById("previous");
 const currentProgress = document.getElementById("current-progress");
 const progressContainer = document.getElementById("progress-container");
 const shuffleButton = document.getElementById("shuffle");
+const repeatButton = document.getElementById("repeat");
+const songTime = document.getElementById("song-time");
+const totalTime = document.getElementById("total-time");
 
 const The_Pretender = {
     songName : "The Pretender",
@@ -35,6 +38,7 @@ let index = 0;
 // songname.innerText = "The Pretender";
 let isPlaying = false;
 let isShuffle = false;
+let repeatOn = false;
 // song.pause();
 
 function playSong() {
@@ -91,10 +95,10 @@ function nextSong () {
     playSong();
 }
 
-function updateProgressBAr () {
+function updateProress () {
     const barWidth = (song.currentTime / song.duration) * 100;
     currentProgress.style.setProperty("--progress", `${barWidth}%`);
-
+    songTime.innerText = toHHMMSS(song.currentTime);
 }
 
 function jumpTo (event) {
@@ -129,10 +133,56 @@ function shuffleButtonClicked () {
     }
 }
 
+function repeatButtonClicked () {
+    if (repeatOn === false) {
+        repeatOn = true;
+        repeatButton.classList.add("button-active");
+    }else {
+        repeatOn = false;
+        repeatButton.classList.remove("button-active");
+    }
+}
+
+function nextOrRepeat () {
+    if (repeatOn === false) {
+        nextSong();
+
+    }else{
+        playSong();
+    }
+}
+
+// function updateCurentTime () {
+//     songTime.innerText = toHHMMSS(song.currentTime);
+// }
+
+function toHHMMSS(originalNumber) {
+    let hours = Math.floor(originalNumber/3600);
+    let mins = Math.floor((originalNumber - (hours * 3600)) / 60);
+    let secs = Math.floor(originalNumber - hours * 3600 - mins * 60);
+    
+    // Formata para sempre ter dois dígitos
+    // let formatted = `${String(hours).padStart(2, '0')}:${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+
+    return `${String(hours).padStart(2, '0')}:${String(mins).padStart(2, '0')}:${String(secs).padStart(2, '0')}`
+    // let formatted = `${hours}:${mins}:${secs}`;
+    // alert(formatted);
+}
+
+function updateTotalTime () {
+    toHHMMSS(song.duration);
+    totalTime.innerText = toHHMMSS(song.duration);
+}
+
+
+
 
 play.addEventListener("click", playPauseDecider);
 previous.addEventListener("click", previousSong);
 next.addEventListener("click", nextSong);
-song.addEventListener("timeupdate", updateProgressBAr);
+song.addEventListener("timeupdate", updateProress);
+song.addEventListener("ended", nextOrRepeat);
+song.addEventListener("loadedmetadata", updateTotalTime);
 progressContainer.addEventListener("click", jumpTo);
 shuffleButton.addEventListener("click", shuffleButtonClicked);
+repeatButton.addEventListener("click", repeatButtonClicked);
