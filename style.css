@@ -34,6 +34,7 @@ button {
 
 .button {
     font-size: 1.5em; /*em = medida relativa ao tamanho da fonte do elemento pai */
+    cursor: pointer;
 }
 
 .button-navegate {
@@ -82,5 +83,9 @@ button {
 
 #progress-container {
     padding-bottom: 1em;
+    cursor: pointer;
+}
 
+.button-active {
+    color: rgb(0, 183, 107);
 }
