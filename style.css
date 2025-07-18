@@ -69,7 +69,7 @@ button {
     height: 3px;
     width: 100%; /*largura da barra de acordo com o elemento pai*/
     border-radius: 15px;
-    margin-bottom: 1.5em;
+    /* margin-bottom: 1.5em; */
 }
 
 #current-progress {
@@ -78,4 +78,9 @@ button {
     height: inherit;
     width: var(--progress);
     border-radius: inherit;
+}
+
+#progress-container {
+    padding-bottom: 1em;
+
 }
