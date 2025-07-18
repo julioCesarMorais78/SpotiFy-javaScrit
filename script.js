@@ -7,6 +7,7 @@ const play = document.getElementById("play"); // id aplicado ao botão de play
 const cover = document.getElementById("cover");
 const next = document.getElementById("next");
 const previous = document.getElementById("previous");
+const currentProgress = document.getElementById("current-progress");
 
 const The_Pretender = {
     songName : "The Pretender",
@@ -86,8 +87,14 @@ function nextSong () {
     playSong();
 }
 
+function updateProgressBAr () {
+    const barWidth = (song.currentTime / song.duration) * 100;
+    currentProgress.style.setProperty("--progress", `${barWidth}%`);
+
+}
+
+
 play.addEventListener("click", playPauseDecider);
-
-previous.addEventListener("click", previousSong)
-
-next.addEventListener("click", nextSong)
+previous.addEventListener("click", previousSong);
+next.addEventListener("click", nextSong);
+song.addEventListener("timeupdate", updateProgressBAr);
